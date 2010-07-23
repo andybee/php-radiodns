@@ -118,7 +118,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 		}
 		else
 		{
-			trigger_error('Invalid Ensembled Identifier (EId) value. Must be a valid 4-character hexadecimal.');
+			trigger_error('Invalid Ensemble Identifier (EId) value. Must be a valid 4-character hexadecimal.');
 			return NULL;
 		}
 		
@@ -144,14 +144,15 @@ class RadioDNS_DABService extends RadioDNS_Service
 		}
 		else
 		{
-			trigger_error('Invalid Service Component Identifer within the Service (SCIdS) value. Must be a valid 3-character hexadecimal.');
+			trigger_error('Invalid Service Component Identifier within the Service (SCIdS) value. Must be a valid 1 or 3-character hexadecimal.');
 			return NULL;
 		}
 		
 		/**
 		 * identify data value type and validate
 		 */
-		if($data != NULL) {
+		if($data != NULL)
+		{
 			if(ereg('^[0-9A-F]{2}-[0-9A-F]{3}$', $data))
 			{
 				$this->xpad = $data;
@@ -164,7 +165,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 			}
 			else
 			{
-				trigger_error('Invalid data value. Must be either a valid X-PAD Applicaton Type (AppTy) and User Applicaton type (UAtype) hexadecimal or Packet Address integer.');
+				trigger_error('Invalid data value. Must be either a valid X-PAD Application Type (AppTy) and User Application type (UAtype) hexadecimal or Packet Address integer.');
 				return NULL;
 			}
 		}
