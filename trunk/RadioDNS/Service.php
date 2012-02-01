@@ -136,6 +136,7 @@ abstract class RadioDNS_Service
 		$results = array();
 		foreach($response->answer as $answer)
 		{
+			if($answer->type != 'SRV') { continue; }
 			array_push($results, array(
 				'target' => $response->answer[0]->target,
 				'port' => $response->answer[0]->port,
