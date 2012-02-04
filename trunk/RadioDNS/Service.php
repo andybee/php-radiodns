@@ -66,6 +66,7 @@ abstract class RadioDNS_Service
 		// check for valid response
 		if(!$response) { return FALSE; }
 		if(!$response[0]['target']) { return FALSE; }
+		if($response[0]['type'] != 'CNAME') { return FALSE; }
 		
 		// cache result to avoid recurring queries for the same service
 		$this->cached_authorative_fqdn = $response[0]['target'];
