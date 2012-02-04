@@ -45,20 +45,20 @@
 abstract class RadioDNS_Service
 {
 	/**
-	 * Holds a previously resolved authorative FQDN for this service to avoid 
+	 * Holds a previously resolved authoritative FQDN for this service to avoid 
 	 * the need to lookup again
 	 * @access private
 	 * @var unknown_type
 	 */
-	private $cached_authorative_fqdn;
+	private $cached_authoritative_fqdn;
 	
 	/**
 	 * Performs a CNAME DNS record lookup request using the Net_DNS_Resolver 
-	 * object held in {@link $dns_resolver} to return the authorative FQDN for 
+	 * object held in {@link $dns_resolver} to return the authoritative FQDN for 
 	 * a service. The retrieved value is also held in 
-	 * {@link $cached_authorative_fqdn} for future requests.
+	 * {@link $cached_authoritative_fqdn} for future requests.
 	 */
-	public function resolveAuthorativeFQDN()
+	public function resolveAuthoritativeFQDN()
 	{
 		// perform DNS resolution for CNAME record
 		$response = dns_get_record($this->toFQDN(), DNS_CNAME);
@@ -69,14 +69,14 @@ abstract class RadioDNS_Service
 		if($response[0]['type'] != 'CNAME') { return FALSE; }
 		
 		// cache result to avoid recurring queries for the same service
-		$this->cached_authorative_fqdn = $response[0]['target'];
+		$this->cached_authoritative_fqdn = $response[0]['target'];
 		
-		return $this->cached_authorative_fqdn;
+		return $this->cached_authoritative_fqdn;
 	}
 	
 	/**
 	 * Performs a SRV DNS record lookup for the supplied application ID and 
-	 * transport protocol against the previously resolved authorative FQDN
+	 * transport protocol against the previously resolved authoritative FQDN
 	 * @param string $application_id
 	 * @param string $transport_protocol
 	 * @return array
@@ -89,12 +89,12 @@ abstract class RadioDNS_Service
 		if(!isset($application_id)) { return FALSE; }
 		
 		/*
-		 * obtain authorative FQDN either from cache or new query
+		 * obtain authoritative FQDN either from cache or new query
 		 */
-		$authorative_fqdn = isset($this->cached_authorative_fqdn) ? $this->cached_authorative_fqdn : $this->resolveAuthorativeFQDN();
-		if(!$authorative_fqdn) { return FALSE; }
+		$authoritative_fqdn = isset($this->cached_authoritative_fqdn) ? $this->cached_authoritative_fqdn : $this->resolveAuthoritativeFQDN();
+		if(!$authoritative_fqdn) { return FALSE; }
 		
-		$application_fqdn = sprintf('_%s._%s.%s', strtolower($application_id), strtolower($transport_protocol), $authorative_fqdn);
+		$application_fqdn = sprintf('_%s._%s.%s', strtolower($application_id), strtolower($transport_protocol), $authoritative_fqdn);
 		
 		/*
 		 * perform DNS resolution for SRV record
