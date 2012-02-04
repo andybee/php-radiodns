@@ -53,13 +53,13 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 		/*
 		// DRM/AMSS AM test service (none currently listed within RadioDNS name server as of 2009-08-27)
 		$this->am_service = new RadioDNS_AMService(NULL, NULL);
-		$this->am_authorative_fqdn = NULL;
+		$this->am_authoritative_fqdn = NULL;
 		$this->am_applications = NULL;
 		*/
 		
 		// DAB Digital Radio test service (95.8 Capital FM, London, UK - last observed: 2012-02-03)
 		$this->dab_service = new RadioDNS_DABService('CE1', 'C185', 'C586', 0);
-		$this->dab_authorative_fqdn = 'rdns.musicradio.com';
+		$this->dab_authoritative_fqdn = 'rdns.musicradio.com';
 		$this->dab_applications = array(
 			'radioepg' => array(
 			array(
@@ -89,7 +89,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 		
 		// FM test service (95.8 Capital FM, London, UK - last observed: 2012-02-03)
 		$this->fm_service = new RadioDNS_FMService('CE1', 'C586', 95.8);
-		$this->fm_authorative_fqdn = 'rdns.musicradio.com';
+		$this->fm_authoritative_fqdn = 'rdns.musicradio.com';
 		$this->fm_applications = array(
 			'radioepg' => array(
 			array(
@@ -120,29 +120,29 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 		/*
 		// HD Radio test service (none currently listed with RadioDNS name server as of 2009-08-27)
 		$this->hd_service = new RadioDNS_HDService(NULL, NULL);
-		$this->fm_authorative_fqdn = NULL;
+		$this->fm_authoritative_fqdn = NULL;
 		$this->fm_applications = NULL:
 		*/
 	}
 	
-	public function no_testAMAuthorativeFQDNResolution()
+	public function no_testAMAuthoritativeFQDNResolution()
 	{
-		$this->assertEquals($this->am_authorative_fqdn, $this->am_service->resolveAuthorativeFQDN());
+		$this->assertEquals($this->am_authoritative_fqdn, $this->am_service->resolveAuthoritativeFQDN());
 	}
 	
-	public function testDABAuthorativeFQDNResolution()
+	public function testDABAuthoritativeFQDNResolution()
 	{
-		$this->assertEquals($this->dab_authorative_fqdn, $this->dab_service->resolveAuthorativeFQDN());
+		$this->assertEquals($this->dab_authoritative_fqdn, $this->dab_service->resolveAuthoritativeFQDN());
 	}
 	
-	public function testFMAuthorativeFQDNResolution()
+	public function testFMAuthoritativeFQDNResolution()
 	{
-		$this->assertEquals($this->fm_authorative_fqdn, $this->fm_service->resolveAuthorativeFQDN());
+		$this->assertEquals($this->fm_authoritative_fqdn, $this->fm_service->resolveAuthoritativeFQDN());
 	}
 	
-	public function no_testHDAuthorativeFQDNResolution()
+	public function no_testHDAuthoritativeFQDNResolution()
 	{
-		$this->assertEquals($this->hd_authorative_fqdn, $this->hd_service->resolveAuthorativeFQDN());
+		$this->assertEquals($this->hd_authoritative_fqdn, $this->hd_service->resolveAuthoritativeFQDN());
 	}
 	
 	public function providerApplications()

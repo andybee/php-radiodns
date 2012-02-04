@@ -138,8 +138,8 @@ class RadioDNS
 	private function lookupService(RadioDNS_Service $service)
 	{
 		$results['radiodns_fqdn'] = $service->toFQDN();
-		$results['authorative_fqdn'] = $service->resolveAuthorativeFQDN();
-		if(!$results['authorative_fqdn']) { return FALSE; }
+		$results['authoritative_fqdn'] = $service->resolveAuthoritativeFQDN();
+		if(!$results['authoritative_fqdn']) { return FALSE; }
 		
 		$results['applications'] = array();
 		foreach($this->KNOWN_APPLICATIONS as $application)
