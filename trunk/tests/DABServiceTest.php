@@ -28,7 +28,7 @@
  * @author    Andy Buckingham <andy.buckingham@thisisglobal.com>
  * @copyright Copyright (c) 2009, Global Radio UK Limited
  * @license   http://www.apache.org/licenses/LICENSE-2.0
- * @version   0.1alpha
+ * @version   1.0
  * @link      http://www.radiodns.org/docs
  */
 
