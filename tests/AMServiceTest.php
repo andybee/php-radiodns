@@ -114,6 +114,13 @@ class AMServiceTest extends PHPUnit_Framework_TestCase
 		$service = new RadioDNS_AMService('drm', $non_hex_sid);
 	}
 	
+	public function testLowerCaseSIDArgument()
+	{
+		$lowercase_sid = strtolower($this->sid);
+		
+		$service = new RadioDNS_AMService('drm', $lowercase_sid);
+	}
+	
 	public function testDRMFQDNOutput()
 	{
 		$service = new RadioDNS_AMService('drm', $this->sid);

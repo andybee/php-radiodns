@@ -91,7 +91,7 @@ class RadioDNS_FMService extends RadioDNS_Service
 			$this->rds_cc_ecc = NULL;
 			$this->iso3166_country_code = $country;
 		}
-		else if(preg_match('/^[0-9A-F]{3}$/', $country) > 0)
+		else if(preg_match('/^[[:xdigit:]]{3}$/', $country) > 0)
 		{
 			$this->rds_cc_ecc = $country;
 			$this->iso3166_country_code = NULL;
@@ -105,7 +105,7 @@ class RadioDNS_FMService extends RadioDNS_Service
 		/**
 		 * pi value
 		 */
-		if(preg_match('/^[0-9A-F]{4}$/', $pi) > 0 && (substr($pi, 0, 1) == substr($this->rds_cc_ecc, 0, 1) || $this->iso3166_country_code != NULL))
+		if(preg_match('/^[[:xdigit:]]{4}$/', $pi) > 0 && (strtolower(substr($pi, 0, 1)) == strtolower(substr($this->rds_cc_ecc, 0, 1)) || $this->iso3166_country_code != NULL))
 		{
 			$this->pi = $pi;
 		}

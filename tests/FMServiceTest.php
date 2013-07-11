@@ -108,6 +108,13 @@ class FMServiceTest extends PHPUnit_Framework_TestCase
 		
 		$service = new RadioDNS_FMService($non_hex_cc_ecc, $this->pi, $this->frequency);
 	}
+
+	public function testLowerCaseCC_ECCArgument()
+	{
+		$lowercase_ecc = strtolower($this->cc_ecc);
+		
+		$service = new RadioDNS_FMService($lowercase_ecc, $this->pi, $this->frequency);
+	}
 	
 	/**
      * @expectedException PHPUnit_Framework_Error
@@ -134,6 +141,13 @@ class FMServiceTest extends PHPUnit_Framework_TestCase
 		$non_hex_pi = sprintf('%sX%s', substr($this->pi, 0, $random_position), substr($this->pi, $random_position + 1));
 		
 		$service = new RadioDNS_FMService($this->cc_ecc, $non_hex_pi, $this->frequency);
+	}
+
+	public function testLowerCasePIArgument()
+	{
+		$lowercase_pi = strtolower($this->pi);
+		
+		$service = new RadioDNS_FMService($this->cc_ecc, $lowercase_pi, $this->frequency);
 	}
 	
 	/**

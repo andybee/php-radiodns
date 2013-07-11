@@ -144,6 +144,13 @@ class DABServiceTest extends PHPUnit_Framework_TestCase
 		
 		$service = new RadioDNS_DABService($non_hex_ecc, $this->eid, $this->sid, $this->scids);
 	}
+
+	public function testLowerCaseECCArgument()
+	{
+		$lowercase_ecc = strtolower($this->ecc);
+
+		$service = new RadioDNS_DABService($lowercase_ecc, $this->eid, $this->sid, $this->scids);
+	}
 	
 	/**
      * @expectedException PHPUnit_Framework_Error
@@ -170,6 +177,13 @@ class DABServiceTest extends PHPUnit_Framework_TestCase
 		$non_hex_eid = sprintf('%sX%s', substr($this->eid, 0, $random_position), substr($this->eid, $random_position + 1));
 		
 		$service = new RadioDNS_DABService($this->ecc, $non_hex_eid, $this->sid, $this->scids);
+	}
+
+	public function testLowerCaseEIDArgument()
+	{
+		$lowercase_eid = strtolower($this->eid);
+
+		$service = new RadioDNS_DABService($this->ecc, $lowercase_eid, $this->sid, $this->scids);
 	}
 	
 	/**
@@ -206,6 +220,13 @@ class DABServiceTest extends PHPUnit_Framework_TestCase
 		
 		$service = new RadioDNS_DABService($this->ecc, $this->eid, $non_hex_sid, $this->scids);
 	}
+
+	public function testLowerCaseSIDArgument()
+	{
+		$lowercase_sid = strtolower($this->sid);
+
+		$service = new RadioDNS_DABService($this->ecc, $this->eid, $lowercase_sid, $this->scids);
+	}
 	
 	/**
      * @expectedException PHPUnit_Framework_Error
@@ -229,6 +250,13 @@ class DABServiceTest extends PHPUnit_Framework_TestCase
 	public function testNonHexSCIDSArgument()
 	{
 		$service = new RadioDNS_DABService($this->ecc, $this->eid, $this->sid, 'X');
+	}
+
+	public function testLowerCaseSCIDSArgument()
+	{
+		$lowercase_scids = strtolower($this->scids);
+
+		$service = new RadioDNS_DABService($this->ecc, $this->eid, $this->sid, $lowercase_scids);
 	}
 	
 	/**
@@ -256,6 +284,13 @@ class DABServiceTest extends PHPUnit_Framework_TestCase
 		$non_hex_xpad = sprintf('%sX%s', substr($this->xpad, 0, $random_position), substr($this->xpad, $random_position + 1));
 		
 		$service = new RadioDNS_DABService($this->ecc, $this->eid, $this->sid, $this->scids, $non_hex_xpad);
+	}
+	
+	public function testLowerCaseXPADArgument()
+	{
+		$lowercase_xpad = strtolower($this->xpad);
+		
+		$service = new RadioDNS_DABService($this->ecc, $this->eid, $this->sid, $this->scids, $lowercase_xpad);
 	}
 	
 	/**
