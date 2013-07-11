@@ -98,6 +98,13 @@ class HDServiceTest extends PHPUnit_Framework_TestCase
 		
 		$service = new RadioDNS_HDService($non_hex_cc, $this->tx);
 	}
+
+	public function testLowerCaseCCArgument()
+	{
+		$lowercase_cc = strtolower($this->cc);
+		
+		$service = new RadioDNS_HDService($lowercase_cc, $this->tx);
+	}
 	
 	/**
      * @expectedException PHPUnit_Framework_Error
@@ -124,6 +131,13 @@ class HDServiceTest extends PHPUnit_Framework_TestCase
 		$non_hex_tx = sprintf('%sX%s', substr($this->tx, 0, $random_position), substr($this->tx, $random_position + 1));
 		
 		$service = new RadioDNS_HDService($this->cc, $non_hex_tx);
+	}
+	
+	public function testLowerCaseTXArgument()
+	{
+		$lowercase_tx = strtolower($this->tx);
+		
+		$service = new RadioDNS_HDService($this->cc, $lowercase_tx);
 	}
 	
 	public function testFQDNOutput()

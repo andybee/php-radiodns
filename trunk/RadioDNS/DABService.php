@@ -99,7 +99,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 		/**
 		 * validate ecc value
 		 */
-		if(preg_match('/^[0-9A-F]{3}$/', $ecc) > 0)
+		if(preg_match('/^[[:xdigit:]]{3}$/', $ecc) > 0)
 		{
 			$this->ecc = $ecc;
 		}
@@ -112,7 +112,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 		/**
 		 * validate eid value
 		 */
-		if(preg_match('/^[0-9A-F]{4}$/', $eid) > 0)
+		if(preg_match('/^[[:xdigit:]]{4}$/', $eid) > 0)
 		{
 			$this->eid = $eid;
 		}
@@ -125,7 +125,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 		/**
 		 * validate sid value
 		 */
-		if(preg_match('/^[0-9A-F]{4}$|^[0-9A-F]{8}$/', $sid) > 0)
+		if(preg_match('/^[[:xdigit:]]{4}$|^[[:xdigit:]]{8}$/', $sid) > 0)
 		{
 			$this->sid = $sid;
 		}
@@ -138,7 +138,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 		/**
 		 * validate scids value
 		 */
-		if(preg_match('/^[0-9A-F]{1}$|^[0-9A-F]{3}$/', $scids) > 0)
+		if(preg_match('/^[[:xdigit:]]{1}$|^[[:xdigit:]]{3}$/', $scids) > 0)
 		{
 			$this->scids = $scids;
 		}
@@ -153,7 +153,7 @@ class RadioDNS_DABService extends RadioDNS_Service
 		 */
 		if($data != NULL)
 		{
-			if(preg_match('/^[0-9A-F]{2}-[0-9A-F]{3}$/', $data) > 0)
+			if(preg_match('/^[[:xdigit:]]{2}-[[:xdigit:]]{3}$/', $data) > 0)
 			{
 				$this->xpad = $data;
 				$this->pa = NULL;

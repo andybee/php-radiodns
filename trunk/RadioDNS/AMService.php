@@ -88,7 +88,7 @@ class RadioDNS_AMService extends RadioDNS_Service
 		/**
 		 * validate sid value
 		 */
-		if(preg_match('/^[0-9A-F]{6}$/', $sid) > 0)
+		if(preg_match('/^[[:xdigit:]]{6}$/', $sid) > 0)
 		{
 			$this->sid = $sid;
 		}

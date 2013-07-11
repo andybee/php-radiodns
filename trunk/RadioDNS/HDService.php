@@ -75,7 +75,7 @@ class RadioDNS_HDService extends RadioDNS_Service
 		/**
 		 * cc value
 		 */
-		if(preg_match('/^[0-9A-F]{3}$/', $cc) > 0)
+		if(preg_match('/^[[:xdigit:]]{3}$/', $cc) > 0)
 		{
 			$this->cc = $cc;
 		}
@@ -88,7 +88,7 @@ class RadioDNS_HDService extends RadioDNS_Service
 		/**
 		 * tx value
 		 */
-		if(preg_match('/^[0-9A-F]{5}$/', $tx) > 0)
+		if(preg_match('/^[[:xdigit:]]{5}$/', $tx) > 0)
 		{
 			$this->tx = $tx;
 		}
